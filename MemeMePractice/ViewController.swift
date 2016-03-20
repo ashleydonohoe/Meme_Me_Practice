@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     
@@ -18,11 +18,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var bottomText: UITextField!
     
+    
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName: UIColor.blackColor(),
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName: 4.0
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         topText.text = "TOP"
         bottomText.text = "BOTTOM"
+        
+        topText.defaultTextAttributes = memeTextAttributes
+        bottomText.defaultTextAttributes = memeTextAttributes
+        
+        topText.textAlignment = .Center
+        bottomText.textAlignment = .Center
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,5 +73,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let controller = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
         self.presentViewController(controller, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func userStartedEditing(sender: UITextField) {
+        topText.text = ""
+        bottomText.text = ""
+    }
+    
+    // Clears default text begins editing text field
+    func textFieldDidBeginEditing(textField: UITextField) {
+            topText.text = ""
+            bottomText.text = ""
+    }
+    
+    // TODO: When a user presses return, the keyboard should be dismissed. This can be accomplished in textFieldShouldReturn.
+    
+    
 }
 

@@ -30,13 +30,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Assigns placeholder text that will disappear when user starts typing their meme text
-        topText.attributedPlaceholder = NSAttributedString(string: "TOP", attributes:  memeTextAttributes)
-        bottomText.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes: memeTextAttributes)
         
         // Sets default text attributes and centers text
         topText.defaultTextAttributes = memeTextAttributes
         bottomText.defaultTextAttributes = memeTextAttributes
+        
+        topText.text = "TOP"
+        bottomText.text = "BOTTOM"
         
         topText.textAlignment = .Center
         bottomText.textAlignment = .Center
@@ -77,6 +77,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // Clears placeholder text from screen when user taps inside a textfield
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = ""
+        textField.becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     // Allows user to share meme to social media, send via email, etc
     @IBAction func shareMeme(sender: UIBarButtonItem) {
         if let image = imagePickerView.image {
@@ -90,6 +101,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
+    
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
@@ -98,18 +110,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name:
             UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-        // TODO: When a user presses return, the keyboard should be dismissed. This can be accomplished in textFieldShouldReturn.
-    /*func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("Should return")
-    }
-    */
+    // Hiding keyboard
     
+    func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y -= getKeyboardHeight(notification)
+    }
 }
 

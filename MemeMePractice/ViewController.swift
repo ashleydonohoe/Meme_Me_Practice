@@ -20,6 +20,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
+    @IBOutlet weak var navbar: UINavigationBar!
+    
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    var memedImage: UIImage!
+    
     // Dictionary to hold text attributes
     let memeTextAttributes = [
         NSStrokeColorAttributeName: UIColor.blackColor(),
@@ -92,6 +98,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // Generate the memed image
+    func generateMemedImage() -> UIImage {
+        
+        // Hide toolbar and navbar
+        navbar.hidden = true
+        toolbar.hidden = true
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        navbar.hidden = false
+        toolbar.hidden = false
+        
+        return memedImage
+    }
+    
+   func save() {
+        let meme = Meme(topText: topText.text!, bottomtext: bottomText.text!, image: imagePickerView.image!, memedImage: memedImage!)
+        print(meme)
+    }
+    
     // Clears placeholder text from screen when user taps inside a textfield
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = ""
@@ -105,10 +134,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Allows user to share meme to social media, send via email, etc
     @IBAction func shareMeme(sender: UIBarButtonItem) {
-        if let image = imagePickerView.image {
-            let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            self.presentViewController(controller, animated: true, completion: nil)
+        memedImage = generateMemedImage()
+        let controller = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        controller.completionWithItemsHandler = {
+            (activity, success, items, error) in
+            if success {
+                self.save()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
+        presentViewController(controller, animated: true, completion: nil)
     }
     
     // Moves the view when keyboard covers text field
@@ -116,6 +151,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo!

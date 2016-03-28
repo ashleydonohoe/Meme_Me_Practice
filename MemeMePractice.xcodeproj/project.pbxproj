@@ -284,6 +284,7 @@
 				E01E126F1C9E45410032E988 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

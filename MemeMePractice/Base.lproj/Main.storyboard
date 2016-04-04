@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -51,38 +52,6 @@
                                     </mask>
                                 </variation>
                             </toolbar>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hh-pf-tnl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="fwu-KQ-RuZ">
-                                        <variation key="widthClass=compact" constant="44"/>
-                                    </constraint>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Meme Me" id="Iqf-Ks-L79">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="hP2-VZ-ZFV">
-                                            <connections>
-                                                <action selector="shareMeme:" destination="BYZ-38-t0r" id="6GR-Mi-FOq"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="7AQ-Ty-D2C">
-                                            <connections>
-                                                <action selector="clearMeme:" destination="BYZ-38-t0r" id="LGx-Wf-z7i"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="fwu-KQ-RuZ"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="fwu-KQ-RuZ"/>
-                                    </mask>
-                                </variation>
-                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yEe-Nc-VbA">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,34 +83,51 @@
                                     </mask>
                                 </variation>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hh-pf-tnl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Meme Me" id="Iqf-Ks-L79">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="hP2-VZ-ZFV">
+                                            <connections>
+                                                <action selector="shareMeme:" destination="BYZ-38-t0r" id="6GR-Mi-FOq"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="7AQ-Ty-D2C">
+                                            <connections>
+                                                <action selector="clearMeme:" destination="BYZ-38-t0r" id="LGx-Wf-z7i"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yEe-Nc-VbA" firstAttribute="top" secondItem="7hh-pf-tnl" secondAttribute="bottom" constant="38" id="1dA-SH-bhN">
                                 <variation key="widthClass=compact" constant="32"/>
                             </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="7hh-pf-tnl" secondAttribute="trailing" constant="-20" id="6ma-A5-rWu"/>
+                            <constraint firstItem="7hh-pf-tnl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="4GM-6i-7VT"/>
                             <constraint firstItem="yEe-Nc-VbA" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="92K-oq-o2v"/>
                             <constraint firstItem="AR6-nr-LPX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="D4y-Az-KQa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="n7J-lM-fKq" secondAttribute="trailing" constant="-20" id="DwH-Ts-OXd"/>
+                            <constraint firstItem="yEe-Nc-VbA" firstAttribute="top" secondItem="7hh-pf-tnl" secondAttribute="bottom" constant="20" id="Ehj-uW-TYJ"/>
                             <constraint firstItem="OjH-7D-bjN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="G1Z-dc-BXz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yEe-Nc-VbA" secondAttribute="trailing" constant="5" id="Ga7-hf-Zfg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AR6-nr-LPX" secondAttribute="bottom" id="I12-ao-vPH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AR6-nr-LPX" secondAttribute="trailing" constant="-20" id="J8u-w0-rp2"/>
                             <constraint firstItem="n7J-lM-fKq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="KTz-9v-XTQ"/>
                             <constraint firstItem="yEe-Nc-VbA" firstAttribute="top" secondItem="7hh-pf-tnl" secondAttribute="bottom" constant="40" id="KeN-Ow-4UK"/>
-                            <constraint firstItem="yEe-Nc-VbA" firstAttribute="top" secondItem="7hh-pf-tnl" secondAttribute="bottom" constant="40" id="PcW-HY-9TJ"/>
                             <constraint firstItem="OjH-7D-bjN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="12" id="SVf-nZ-wkn"/>
-                            <constraint firstItem="7hh-pf-tnl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-19" id="Sqn-tl-dS7"/>
                             <constraint firstItem="OjH-7D-bjN" firstAttribute="top" secondItem="yEe-Nc-VbA" secondAttribute="bottom" constant="360" id="UTs-4R-uUw"/>
                             <constraint firstItem="AR6-nr-LPX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="ZOh-cz-8EU"/>
                             <constraint firstItem="yEe-Nc-VbA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="b0w-mU-suF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7hh-pf-tnl" secondAttribute="trailing" constant="-20" id="dr6-2g-zUB"/>
                             <constraint firstItem="n7J-lM-fKq" firstAttribute="top" secondItem="OjH-7D-bjN" secondAttribute="bottom" constant="12" id="jk7-pd-iir"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7hh-pf-tnl" secondAttribute="trailing" constant="-20" id="mZE-me-5Ar"/>
-                            <constraint firstItem="7hh-pf-tnl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="pyu-wY-UsN"/>
+                            <constraint firstItem="7hh-pf-tnl" firstAttribute="centerX" secondItem="yEe-Nc-VbA" secondAttribute="centerX" id="o0Z-Io-QoB"/>
                             <constraint firstItem="n7J-lM-fKq" firstAttribute="top" secondItem="OjH-7D-bjN" secondAttribute="bottom" constant="34" id="qjm-mA-m99"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="n7J-lM-fKq" secondAttribute="bottom" id="s4Q-wF-Q1G"/>
+                            <constraint firstItem="7hh-pf-tnl" firstAttribute="leading" secondItem="n7J-lM-fKq" secondAttribute="leading" id="sSN-pR-P9s"/>
                             <constraint firstItem="OjH-7D-bjN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="uRS-fF-x2W"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OjH-7D-bjN" secondAttribute="trailing" constant="11" id="vwH-zK-DVB"/>
                             <constraint firstItem="yEe-Nc-VbA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="y8s-t0-4cQ"/>
@@ -150,24 +136,24 @@
                             <mask key="subviews">
                                 <exclude reference="AR6-nr-LPX"/>
                                 <exclude reference="n7J-lM-fKq"/>
-                                <exclude reference="7hh-pf-tnl"/>
                                 <exclude reference="yEe-Nc-VbA"/>
                                 <exclude reference="OjH-7D-bjN"/>
+                                <exclude reference="7hh-pf-tnl"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="D4y-Az-KQa"/>
                                 <exclude reference="J8u-w0-rp2"/>
                                 <exclude reference="ZOh-cz-8EU"/>
-                                <exclude reference="6ma-A5-rWu"/>
-                                <exclude reference="Sqn-tl-dS7"/>
+                                <exclude reference="4GM-6i-7VT"/>
                                 <exclude reference="dr6-2g-zUB"/>
                                 <exclude reference="mZE-me-5Ar"/>
-                                <exclude reference="pyu-wY-UsN"/>
+                                <exclude reference="o0Z-Io-QoB"/>
+                                <exclude reference="sSN-pR-P9s"/>
                                 <exclude reference="1dA-SH-bhN"/>
                                 <exclude reference="92K-oq-o2v"/>
+                                <exclude reference="Ehj-uW-TYJ"/>
                                 <exclude reference="Ga7-hf-Zfg"/>
                                 <exclude reference="KeN-Ow-4UK"/>
-                                <exclude reference="PcW-HY-9TJ"/>
                                 <exclude reference="b0w-mU-suF"/>
                                 <exclude reference="y8s-t0-4cQ"/>
                                 <exclude reference="G1Z-dc-BXz"/>
@@ -187,24 +173,24 @@
                             <mask key="subviews">
                                 <include reference="AR6-nr-LPX"/>
                                 <include reference="n7J-lM-fKq"/>
-                                <include reference="7hh-pf-tnl"/>
                                 <include reference="yEe-Nc-VbA"/>
                                 <include reference="OjH-7D-bjN"/>
+                                <include reference="7hh-pf-tnl"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="D4y-Az-KQa"/>
                                 <include reference="J8u-w0-rp2"/>
                                 <include reference="ZOh-cz-8EU"/>
-                                <include reference="6ma-A5-rWu"/>
-                                <include reference="Sqn-tl-dS7"/>
+                                <include reference="4GM-6i-7VT"/>
                                 <exclude reference="dr6-2g-zUB"/>
                                 <exclude reference="mZE-me-5Ar"/>
-                                <include reference="pyu-wY-UsN"/>
+                                <include reference="o0Z-Io-QoB"/>
+                                <include reference="sSN-pR-P9s"/>
                                 <exclude reference="1dA-SH-bhN"/>
                                 <include reference="92K-oq-o2v"/>
+                                <include reference="Ehj-uW-TYJ"/>
                                 <exclude reference="Ga7-hf-Zfg"/>
                                 <exclude reference="KeN-Ow-4UK"/>
-                                <include reference="PcW-HY-9TJ"/>
                                 <include reference="b0w-mU-suF"/>
                                 <exclude reference="y8s-t0-4cQ"/>
                                 <include reference="G1Z-dc-BXz"/>

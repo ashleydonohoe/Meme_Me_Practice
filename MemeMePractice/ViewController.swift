@@ -162,9 +162,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
+    /*
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+ */
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo!

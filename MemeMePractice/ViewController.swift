@@ -39,25 +39,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         shareButton.enabled = false
         
-        // Sets default text attributes and centers text
-        topText.defaultTextAttributes = memeTextAttributes
-        bottomText.defaultTextAttributes = memeTextAttributes
-        
-        topText.text = "TOP"
-        bottomText.text = "BOTTOM"
-        
-        topText.textAlignment = .Center
-        bottomText.textAlignment = .Center
-        
-        self.topText.delegate = self
-        self.bottomText.delegate = self
+        setUpText(topText, text: "TOP")
+        setUpText(bottomText, text: "BOTTOM")
+    }
+    
+    
+    // Sets text, text attributes, text alignment, and delegate to self for both text fields
+    func setUpText(textField: UITextField, text: String) {
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.text = text
+        textField.textAlignment = .Center
+        textField.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        self.subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -77,7 +76,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
         }
     
     // Allows user to pick image from camera
@@ -95,7 +94,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         shareButton.enabled = true
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // Generate the memed image
@@ -132,9 +131,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Checks if active textField is the bottomText. If so, the keyboard will move up. Else, keyboard notifications won't be subscribed to. This code is needed so the top field doesn't make the keyboard move up and hide the field from view.
         if textField.isEqual(bottomText) {
-            self.subscribeToKeyboardNotifications()
+            subscribeToKeyboardNotifications()
         } else {
-            self.unsubscribeFromKeyboardNotifications()
+            unsubscribeFromKeyboardNotifications()
         }
     }
     
@@ -159,7 +158,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Moves the view when keyboard covers text field
     func keyboardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
     /*
@@ -188,7 +187,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Hiding keyboard
     func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y += (getKeyboardHeight(notification))
+        view.frame.origin.y = 0
     }
 }
 

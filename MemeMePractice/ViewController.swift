@@ -73,17 +73,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Presents Image Picker to user
     @IBAction func pickAnImage(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
-        }
+        
+        presentImagePickerController(UIImagePickerControllerSourceType.PhotoLibrary)
+    }
     
     // Allows user to pick image from camera
-    @IBAction func pickFromCamera(sender: UIBarButtonItem) {
+    @IBAction func pickFromCamera(sender: UIBarButtonItem) {        
+        presentImagePickerController(UIImagePickerControllerSourceType.Camera)
+    }
+    
+    // Creates a UiImagePickerController, sets the delegate to self, sets sourcetype, and presents imagePicker
+    func presentImagePickerController(source: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePicker.sourceType = source
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     

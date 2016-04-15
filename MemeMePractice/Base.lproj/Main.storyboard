@@ -185,10 +185,10 @@
                     </view>
                     <connections>
                         <outlet property="bottomText" destination="FQH-XG-5f2" id="2ge-j3-nSu"/>
-                        <outlet property="cameraButton" destination="e1D-aH-rkn" id="FmC-XE-iWs"/>
+                        <outlet property="cameraButton" destination="tRU-Cp-DpH" id="wDA-pV-wob"/>
                         <outlet property="imagePickerView" destination="GKd-Em-YiX" id="IkJ-Ga-GgE"/>
                         <outlet property="navbar" destination="7hh-pf-tnl" id="b0R-2n-aWZ"/>
-                        <outlet property="shareButton" destination="hP2-VZ-ZFV" id="BXr-V7-09D"/>
+                        <outlet property="shareButton" destination="GCd-DO-cvv" id="hML-6y-EFy"/>
                         <outlet property="toolbar" destination="n7J-lM-fKq" id="Ofg-TF-lzb"/>
                         <outlet property="topText" destination="5tk-Js-ouR" id="NHJ-ig-2bZ"/>
                     </connections>
